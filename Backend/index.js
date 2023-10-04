@@ -1,13 +1,21 @@
-import express from 'express'
-import mongoDBConnect from './config/MongoDb.js'
+import express from "express";
+import dotenv from "dotenv";
+dotenv.config();
 
-mongoDBConnect()
-const app = express()
+import mongoDBConnect from "./config/MongoDb.js";
+import userRoute from "./Routers/userRouter.js";
+import adminRoute from "./Routers/adminRouter.js";
+mongoDBConnect();
 
-app.get('/',(req, res)=>{
-    res.send("hello")
-})
+const PORT = process.env.PORT;
+const app = express();
 
-app.listen(4000,()=>{
-    console.log(`server started 4000`);
-})
+app.get("/", (req, res) => {
+  res.send("hello");
+});
+app.use("/user", userRoute);
+app.use("/admin", adminRoute);
+
+app.listen(PORT, () => {
+  console.log(`server started ${PORT}`);
+});
