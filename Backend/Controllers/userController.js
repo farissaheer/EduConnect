@@ -17,6 +17,7 @@ const client = twilio(accountSid, authToken);
 
 const user = {
   createAccountOTP: async (req, res) => {
+    console.log("create otp");
     try {
       const { phoneNumber } = req.body;
       const existingUser = await User.findOne({ phoneNumber });
