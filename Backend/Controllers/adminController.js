@@ -59,9 +59,9 @@ const adminController = {
   },
 
   blockUser: async (req, res) => {
-    const { id } = req.body;
+    const { userId } = req.body;
     try {
-      const userData = await User.findByIdAndUpdate(id, {
+      const userData = await User.findByIdAndUpdate(userId, {
         $set: { isBlocked: true },
       });
       if (userData) {

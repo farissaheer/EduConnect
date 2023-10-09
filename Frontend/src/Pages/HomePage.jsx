@@ -10,8 +10,8 @@ function HomePage() {
     <>
       <NavBar />
       <UserHome />
-      <div className="text-center">
-        <span className="text-2xl font-bold">Courses</span>
+      <div className="text-center pt-5">
+        <span className="text-2xl text-blue-900 font-bold">Available Courses</span>
       </div>
       <div className="w-full  mx-auto p-3 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-4 gap-5 ">
         <Card />
