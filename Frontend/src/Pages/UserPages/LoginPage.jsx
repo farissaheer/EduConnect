@@ -1,6 +1,6 @@
 import React from "react";
-import Login from "../Components/UserComponents/Login";
-import NavBar from "../Components/UserComponents/NavBar";
+import Login from "../../Components/UserComponents/Login";
+import NavBar from "../../Components/UserComponents/NavBar";
 
 function LoginPage() {
   return (

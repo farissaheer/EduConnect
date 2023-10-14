@@ -1,9 +1,9 @@
 import React from "react";
 
-import NavBar from "../Components/UserComponents/NavBar";
-import UserHome from "../Components/UserComponents/UserHome";
-import Footer from "../Components/UserComponents/Footer";
-import Card from "../Components/UserComponents/Card";
+import NavBar from "../../Components/UserComponents/NavBar";
+import UserHome from "../../Components/UserComponents/UserHome";
+import Footer from "../../Components/UserComponents/Footer";
+import Card from "../../Components/UserComponents/Card";
 
 function HomePage() {
   return (

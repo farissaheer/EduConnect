@@ -84,7 +84,6 @@ export default function Signup() {
       toastError("Please enter 10 digits phone number.");
       return;
     }
-    console.log("success");
     const phoneNumber = phone;
     axios
       .post("/user/createAccountOTP", { phoneNumber })
@@ -245,6 +244,7 @@ export default function Signup() {
                   <input
                     id="phone"
                     type="number"
+                    disabled
                     placeholder="Enter your phone number"
                     className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
                     value={phone}
