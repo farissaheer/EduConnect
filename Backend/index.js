@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -10,11 +11,13 @@ mongoDBConnect();
 const PORT = process.env.PORT;
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send("hello");
-});
+app.use(cors());
 app.use("/user", userRoute);
 app.use("/admin", adminRoute);
+
+app.get("/test", (req, res) => {
+  res.json({ message: "hello" });
+});
 
 app.listen(PORT, () => {
   console.log(`server started ${PORT}`);

@@ -6,10 +6,14 @@ const protect = asyncHandler(async (req, res, next) => {
   if (token) {
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      next();
+      if (decoded) {
+        next();
+      } else {
+        res.status(401).json({ message: "Not Authorized" });
+      }
     } catch (error) {
       res.status(401).json({ message: "Invalid token" });
-    //   throw new Error("Not authorized, invalid token");
+      //   throw new Error("Not authorized, invalid token");
     }
   } else {
     res.status(401).json({ message: "Invalid token" });

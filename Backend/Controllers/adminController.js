@@ -61,13 +61,18 @@ const adminController = {
   blockUser: async (req, res) => {
     const { userId } = req.body;
     try {
+      const user = await User.findById(userId);
+      const status = user.isBlocked ? false : true;
       const userData = await User.findByIdAndUpdate(userId, {
-        $set: { isBlocked: true },
+        $set: { isBlocked: status },
       });
+      const message = userData.isBlocked
+        ? "User UnBlocked Successfully"
+        : "User Blocked Successfully";
       if (userData) {
         return res.status(200).json({
           status: 200,
-          message: "User Blocked Successfully",
+          message,
         });
       }
     } catch (error) {

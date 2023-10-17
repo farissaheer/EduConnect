@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { toastError, toastSuccess } from "../toast";
 import { validatePasswordLength, validatePhone } from "../../Utils/Validation";
 import { useNavigate } from "react-router-dom";
+import instance from "../API/axiosInstance";
 
 function ForgotPassword() {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -14,7 +15,7 @@ function ForgotPassword() {
 
   const navigate = useNavigate();
 
-  const handleRequest = () => {
+  const handleRequest = async () => {
     if (!phoneNumber) {
       toastError("Please Enter the Phone Number");
       return;
@@ -23,12 +24,22 @@ function ForgotPassword() {
       toastError("Enter 10 digit Phone Number");
       return;
     }
-    toastSuccess("OTP send to your Phone Number");
-    setRequestOTP(false);
-    setVerifyOTP(true);
+    await instance({
+      url: "/user/resetPasswordOTP",
+      method: "POST",
+      data: { phoneNumber },
+    }).then((res) => {
+      if (res.data.status === 200) {
+        toastSuccess(res.data.message);
+        setRequestOTP(false);
+        setVerifyOTP(true);
+      } else {
+        toastError(res.data.message);
+      }
+    });
   };
 
-  const handleVerify = () => {
+  const handleVerify = async () => {
     if (!OTP) {
       toastError("Enter the OTP");
       return;
@@ -37,12 +48,22 @@ function ForgotPassword() {
       toastError("OTP must be 4 digits");
       return;
     }
-    toastSuccess("OTP Verified Successfully");
-    setVerifyOTP(false);
-    setReset(true);
+    await instance({
+      url: "/user/checkOTP",
+      method: "POST",
+      data: { phoneNumber, OTP },
+    }).then((res) => {
+      if (res.data.status === 200) {
+        toastSuccess(res.data.message);
+        setVerifyOTP(false);
+        setReset(true);
+      } else {
+        toastError(res.data.message);
+      }
+    });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!password || !confirmPassword) {
       toastError("Please Fill all fields");
       return;
@@ -55,9 +76,31 @@ function ForgotPassword() {
       toastError("Passwords don't match");
       return;
     }
-    toastSuccess("Password changed successfully");
-    navigate("/login");
+    await instance({
+      url: "/user/resetPassword",
+      method: "POST",
+      data: { phoneNumber, password },
+    }).then((res) => {
+      if (res.data.status === 200) {
+        toastSuccess(res.data.message);
+        navigate("/login");
+      } else {
+        toastError(res.data.message);
+      }
+    });
   };
+
+  // const [value, setValue] = useState("Sample");
+  // const button = async () => {
+  //   await instance({
+  //     url: "/test",
+  //     method: "GET",
+  //   })
+  //     .then((res) => {
+  //       setValue(res.data.message);
+  //     })
+  //     .catch((error) => console.log(error));
+  // };
   return (
     <>
       <div className="h-full bg-gradient-to-tl from-green-500 to-blue-300 w-full py-24 px-4">

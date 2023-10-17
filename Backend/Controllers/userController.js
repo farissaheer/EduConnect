@@ -81,7 +81,7 @@ const user = {
         } else {
           res.json({
             status: 400,
-            message: "Your enteres OTP is wrong, Try again",
+            message: "Your entered OTP is wrong, Try again",
           });
         }
       } else {
@@ -180,7 +180,7 @@ const user = {
       const existingOTP = await MobileOTP.findOne({ phoneNumber });
 
       if (existingOTP) {
-        await MobileOTP.deleteOne({ phone });
+        await MobileOTP.deleteOne({ phoneNumber });
       }
       const userData = await User.findOne({ phoneNumber });
       if (userData) {
