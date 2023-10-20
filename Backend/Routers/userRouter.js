@@ -12,5 +12,6 @@ userRoute.post("/userSignUP", user.userSignup);
 userRoute.post("/userLogin", user.userLogin);
 userRoute.post("/resetPasswordOTP", user.resetPasswordOTP);
 userRoute.post("/resetPassword", user.resetPassword);
+userRoute.post("/addMoreDetails", user.addDetails);
 
 export default userRoute;

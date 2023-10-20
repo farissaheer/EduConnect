@@ -93,7 +93,7 @@ const user = {
   },
 
   userSignup: async (req, res) => {
-    const { name, email, phoneNumber, password } = req.body;
+    const { name, email, phoneNumber, password, userType } = req.body;
     try {
       const userExist = await User.findOne({
         $or: [{ email }, { phoneNumber }],
@@ -109,10 +109,13 @@ const user = {
       }
       if (!userExist) {
         const HashedPassword = await bcrypt.hash(password, 10);
+        const isAccepted = userType === "student" ? true : false;
         const newUser = new User({
           name,
           email,
           phoneNumber,
+          userType,
+          isAccepted,
           password: HashedPassword,
         });
         await newUser.save();
@@ -125,6 +128,22 @@ const user = {
       }
     } catch (error) {
       console.log(error);
+    }
+  },
+
+  addDetails: async (req, res) => {
+    const { phoneNumber, skills, qualifications } = req.body;
+    try {
+      const updateDetails = await User.updateOne({phoneNumber}, {
+        $set: { skills, qualifications },
+      });
+      if (updateDetails) {
+        return res.json({ status: 200, message: "Details added." });
+      } else {
+        return res.json({ status: 404, message: "Something went Wrong" });
+      }
+    } catch (error) {
+      return res.json({ status: 500, message: error.message });
     }
   },
 

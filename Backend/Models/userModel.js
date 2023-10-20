@@ -20,6 +20,20 @@ const userSchema = mongoose.Schema({
   image: {
     type: String,
   },
+  qualifications: {
+    type: Array,
+  },
+  skills: {
+    type: Array,
+  },
+  isAccepted: {
+    type: Boolean,
+    required: true,
+  },
+  userType: {
+    type: String,
+    required: true,
+  },
   isAdmin: {
     type: Boolean,
     required: true,
