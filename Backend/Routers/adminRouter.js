@@ -9,7 +9,10 @@ adminRoute.use(express.urlencoded({ extended: false }));
 
 adminRoute.post("/adminLogin", admin.adminLogin);
 adminRoute.post("/userList", protect, admin.userList);
+adminRoute.post("/tutorList", protect, admin.tutorList);
+adminRoute.post("/tutorRequest", protect, admin.tutorRequestList);
 adminRoute.post("/blockUser", protect, admin.blockUser);
-adminRoute.post("/unblockUser", protect, admin.unblockUser);
+adminRoute.post("/acceptTutor", protect, admin.acceptTutor);
+adminRoute.post("/rejectTutor", protect, admin.rejectTutor);
 
 export default adminRoute;

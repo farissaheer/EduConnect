@@ -4,6 +4,8 @@ import Cookies from "js-cookie";
 const initialState = {
   login: [],
   userDetails: [],
+  tutorDetails: [],
+  tutorRequests: [],
 };
 
 export const adminSlice = createSlice({
@@ -23,18 +25,35 @@ export const adminSlice = createSlice({
         ...state,
         login: [],
         userDetails: [],
+        tutorDetails: [],
+        tutorRequests: [],
       };
     },
 
     userList: (state, action) => {
       return {
         ...state,
-        userDetails: action.payload
-      }
+        userDetails: action.payload,
+      };
+    },
+
+    tutorList: (state, action) => {
+      return {
+        ...state,
+        tutorDetails: action.payload,
+      };
+    },
+
+    tutorRequest: (state, action) => {
+      return {
+        ...state,
+        tutorRequests: action.payload,
+      };
     },
   },
 });
 
-export const { LoginAdmin, LogoutAdmin, userList } = adminSlice.actions;
+export const { LoginAdmin, LogoutAdmin, userList, tutorList, tutorRequest } =
+  adminSlice.actions;
 
 export const adminSLiceReducer = adminSlice.reducer;

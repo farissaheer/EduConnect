@@ -10,7 +10,9 @@ import { AdminDashAuth, AdminLoginAuth } from "./Auth/LoginAuth";
 import AdminHome from "./Components/AdminComponents/AdminHome";
 import AdminUser from "./Components/AdminComponents/AdminUsers";
 import ForgotPasswordPage from "./Pages/UserPages/ForgotPasswordPage";
-import TutorDashboard from "./Components/TutorComponents/TutorDashboard";
+import TutorDashboardPage from "./Pages/TutorPages/TutorDashboardPage";
+import AdminTutors from "./Components/AdminComponents/AdminTutors";
+import AdminTutorRequest from "./Components/AdminComponents/AdminTutorRequest";
 
 function App() {
   return (
@@ -18,7 +20,7 @@ function App() {
       <ToastContainer />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/test" element={<TutorDashboard />} />
+        <Route path="/test" element={<TutorDashboardPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/forgotPassword" element={<ForgotPasswordPage />} />
@@ -33,6 +35,8 @@ function App() {
           <Route index element={<AdminHome />} />
           <Route path="dashboard" element={<AdminHome />} />
           <Route path="user" element={<AdminUser />} />
+          <Route path="tutors" element={<AdminTutors />} />
+          <Route path="tutorrequest" element={<AdminTutorRequest />} />
         </Route>
       </Routes>
     </Router>

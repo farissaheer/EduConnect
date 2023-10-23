@@ -45,9 +45,47 @@ const adminController = {
 
   userList: async (req, res) => {
     try {
-      const userData = await User.find({ isAdmin: { $ne: true } }).select(
-        "-password"
-      );
+      const userData = await User.find({
+        $and: [{ userType: "student" }, { isAdmin: { $ne: true } }],
+      }).select("-password");
+      return res.status(200).json({
+        status: 200,
+        message: "User Data",
+        userData,
+      });
+    } catch (error) {
+      return res.status(500).json({ error });
+    }
+  },
+
+  tutorList: async (req, res) => {
+    try {
+      const userData = await User.find({
+        $and: [
+          { userType: "tutor" },
+          { isAccepted: { $eq: true } },
+          { isAdmin: { $ne: true } },
+        ],
+      }).select("-password");
+      return res.status(200).json({
+        status: 200,
+        message: "User Data",
+        userData,
+      });
+    } catch (error) {
+      return res.status(500).json({ error });
+    }
+  },
+
+  tutorRequestList: async (req, res) => {
+    try {
+      const userData = await User.find({
+        $and: [
+          { userType: "tutor" },
+          { isAccepted: { $ne: true } },
+          { isAdmin: { $ne: true } },
+        ],
+      }).select("-password");
       return res.status(200).json({
         status: 200,
         message: "User Data",
@@ -80,16 +118,33 @@ const adminController = {
     }
   },
 
-  unblockUser: async (req, res) => {
-    const { id } = req.body;
+  acceptTutor: async (req, res) => {
+    const { userId } = req.body;
     try {
-      const userData = await User.findByIdAndUpdate(id, {
-        $set: { isBlocked: false },
+      const userData = await User.findByIdAndUpdate(userId, {
+        $set: { isAccepted: true },
       });
       if (userData) {
         return res.status(200).json({
           status: 200,
-          message: "User Unblocked Successfully",
+          message: "Accepted Tutor Successfully",
+        });
+      }
+    } catch (error) {
+      return res.status(500).json({ error });
+    }
+  },
+
+  rejectTutor: async (req, res) => {
+    const { userId } = req.body;
+    try {
+      const userData = await User.findByIdAndUpdate(userId, {
+        $set: { isAccepted: false },
+      });
+      if (userData) {
+        return res.status(200).json({
+          status: 200,
+          message: "Rejected Tutor Successfully",
         });
       }
     } catch (error) {

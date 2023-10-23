@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import StudentList from "./StudentList";
 
 function TutorDashboard() {
   const [show, setShow] = useState(false);
@@ -13,7 +14,7 @@ function TutorDashboard() {
       <div className="w-full h-full bg-gray-200">
         <div className="flex flex-no-wrap">
           {/* Sidebar starts */}
-          <div className="absolute lg:relative w-64 h-screen shadow bg-gray-100 hidden lg:block">
+          <div className="fixed lg:fixed w-64 h-screen shadow bg-gray-100 hidden lg:block">
             <div className="h-16 w-full flex items-center px-8">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -354,9 +355,9 @@ function TutorDashboard() {
           </div>
           {/*Mobile responsive sidebar*/}
           {/* Sidebar ends */}
-          <div className="w-full">
+          <div className="w-full ml-64">
             {/* Navigation starts */}
-            <nav className="h-16 flex items-center lg:items-stretch justify-end lg:justify-between bg-white shadow relative z-10">
+            <nav className="relative top-0 sticky h-16 flex items-center lg:items-stretch justify-end lg:justify-between bg-white shadow  z-10">
               <div className="hidden lg:flex w-full pr-6">
                 <div className="w-1/2 h-full hidden lg:flex items-center pl-6 pr-24">
                   <div className="relative w-full">
@@ -541,11 +542,12 @@ function TutorDashboard() {
             </nav>
             {/* Navigation ends */}
             {/* Remove class [ h-64 ] when adding a card block */}
-            <div className="container mx-auto py-10 h-64 md:w-4/5 w-11/12 px-6">
+            <div className="container mx-auto py-10 md:w-4/5 w-11/12 px-6">
+                <StudentList/>
               {/* Remove class [ border-dashed border-2 border-gray-300 ] to remove dotted border */}
-              <div className="w-full h-full rounded border-dashed border-2 border-gray-300">
+              {/* <div className="w-full h-full rounded border-dashed border-2 border-gray-300"> */}
                 {/* Place your content here */}
-              </div>
+              {/* </div> */}
             </div>
           </div>
         </div>

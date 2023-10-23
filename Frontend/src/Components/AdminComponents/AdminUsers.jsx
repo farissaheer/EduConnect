@@ -2,8 +2,8 @@ import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faPen } from "@fortawesome/free-solid-svg-icons";
 
 import instance from "../API/axiosInstance";
 import { toastError, toastSuccess } from "../toast";
@@ -108,9 +108,9 @@ function AdminUser() {
                   <th>
                     <p className="pl-16">Status</p>
                   </th>
-                  <th>
+                  {/* <th>
                     <p className="pl-16">Edit</p>
-                  </th>
+                  </th> */}
                   <th>
                     <p className="pl-16">Block/Unblock</p>
                   </th>
@@ -178,11 +178,11 @@ function AdminUser() {
                           )}
                         </p>
                       </td>
-                      <td className="mx-auto">
+                      {/* <td className="mx-auto">
                         <p className="pl-16">
                           <FontAwesomeIcon icon={faPen} color="blue" />
                         </p>
-                      </td>
+                      </td> */}
                       <td className="mx-auto">
                         <p className="pl-16">
                           {user.isBlocked ? (

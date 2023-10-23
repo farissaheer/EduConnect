@@ -4,8 +4,9 @@ import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
-  faUser,
-  faCartShopping,
+  faUsers,
+  faDashboard,
+  faUserGraduate,
   faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -56,7 +57,7 @@ export default function AdminDashBoard() {
                 >
                   <div className="icon">
                     {" "}
-                    <FontAwesomeIcon icon={faUser} size="lg" />
+                    <FontAwesomeIcon icon={faDashboard} size="lg" />
                   </div>
                   <div
                     className={`link_text ml-2 sm:text-sm md:text-xl text-sm ${textClass}`}
@@ -73,12 +74,46 @@ export default function AdminDashBoard() {
                   activeClassName="active"
                 >
                   <div className="icon">
-                    <FontAwesomeIcon icon={faCartShopping} size="lg" />
+                    <FontAwesomeIcon icon={faUsers} size="lg" />
                   </div>
                   <div
                     className={`link_text ml-2 sm:text-sm md:text-xl text-sm ${textClass}`}
                   >
-                    User List
+                    Users List
+                  </div>
+                </NavLink>
+              </li>
+              <hr className="bg-white my-2" />
+              <li>
+                <NavLink
+                  to="/admin/dashboard/tutors"
+                  className={`text-white font-sans my-2 cursor-pointer flex hover:text-slate-500`}
+                  activeClassName="active"
+                >
+                  <div className="icon">
+                    <FontAwesomeIcon icon={faUserGraduate} size="lg" />
+                  </div>
+                  <div
+                    className={`link_text ml-2 sm:text-sm md:text-xl text-sm ${textClass}`}
+                  >
+                    Tutors List
+                  </div>
+                </NavLink>
+              </li>
+              <hr className="bg-white my-2" />
+              <li>
+                <NavLink
+                  to="/admin/dashboard/tutorrequest"
+                  className={`text-white font-sans my-2 cursor-pointer flex hover:text-slate-500`}
+                  activeClassName="active"
+                >
+                  <div className="icon">
+                    <FontAwesomeIcon icon={faUserGraduate} size="lg" />
+                  </div>
+                  <div
+                    className={`link_text ml-2 sm:text-sm md:text-xl text-sm ${textClass}`}
+                  >
+                    Tutor Request
                   </div>
                 </NavLink>
               </li>
