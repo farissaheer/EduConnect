@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 import { toastSuccess, toastError } from "../toast";
-import instance from "../API/axiosInstance";
+import instance from "../../API/axiosInstance";
 import {
   validateEmail,
   validatePasswordLength,

@@ -45,8 +45,11 @@ function Login() {
       if (response.data.status === 200) {
         const userId = response.data.userdetails.id;
         const token = response.data.userdetails.token;
+        const role = response.data.userdetails.userType;
+        console.log("hello")
+        console.log(role)
 
-        CookiesDataSave("user", userId, token);
+        CookiesDataSave(role, userId, token);
         toastSuccess(response.data.message);
         dispatch(loginUser(response.data.userdetails));
         navigate("/", { replace: true });

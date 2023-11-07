@@ -134,9 +134,12 @@ const user = {
   addDetails: async (req, res) => {
     const { phoneNumber, skills, qualifications } = req.body;
     try {
-      const updateDetails = await User.updateOne({phoneNumber}, {
-        $set: { skills, qualifications },
-      });
+      const updateDetails = await User.updateOne(
+        { phoneNumber },
+        {
+          $set: { skills, qualifications },
+        }
+      );
       if (updateDetails) {
         return res.json({ status: 200, message: "Details added." });
       } else {
@@ -172,6 +175,7 @@ const user = {
                 id: userFind._id,
                 name: userFind.name,
                 email,
+                userType: userFind.userType,
                 phoneNumber: userFind.phoneNumber,
                 token: token,
               },

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faPen } from "@fortawesome/free-solid-svg-icons";
 
-import instance from "../API/axiosInstance";
+import instance from "../../API/axiosInstance";
 import { toastError, toastSuccess } from "../toast";
 import { tutorList } from "../../Redux/AdminSlice/adminSlice";
 import swalFire from "../../Utils/SweetAlert";

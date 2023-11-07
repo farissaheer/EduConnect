@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { toastError, toastSuccess } from "../toast";
 import { validatePasswordLength, validatePhone } from "../../Utils/Validation";
 import { useNavigate } from "react-router-dom";
-import instance from "../API/axiosInstance";
+import instance from "../../API/axiosInstance";
 
 function ForgotPassword() {
   const [phoneNumber, setPhoneNumber] = useState("");

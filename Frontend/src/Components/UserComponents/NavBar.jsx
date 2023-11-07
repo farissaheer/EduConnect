@@ -16,6 +16,7 @@ export default function NavBar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const Login = useSelector((state) => state.user);
+  console.log(Login);
 
   const handleLogout = () => {
     dispatch(logoutUser());
@@ -100,8 +101,8 @@ export default function NavBar() {
                 </div>
                 <div className="w-full h-full flex">
                   {/* <div className="w-32 h-full flex items-center justify-center border-gray-700 border-r text-gray-400 cursor-pointer"> */}
-                  <div className="w-32 h-full flex items-center justify-center border-gray-700 text-gray-400 cursor-pointer">
-                    {/* <svg
+                  {/* <div className="w-32 h-full flex items-center justify-center border-gray-700 text-gray-400 cursor-pointer"> */}
+                  {/* <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="icon icon-tabler icon-tabler-bell"
                       width={28}
@@ -117,7 +118,7 @@ export default function NavBar() {
                       <path d="M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
                       <path d="M9 17v1a3 3 0 0 0 6 0v-1" />
                     </svg> */}
-                  </div>
+                  {/* </div> */}
                   <div
                     className="w-full flex items-center justify-end relative cursor-pointer"
                     onClick={() => setProfile(!profile)}
@@ -133,20 +134,47 @@ export default function NavBar() {
                     {Login.name && (
                       <div className="relative ">
                         <span
-                          className={`cursor-pointer font-sans text-2xl text-white hover:text-indigo-700`}
+                          className={`cursor-pointer font-sans text-xl font-bold text-white hover:text-indigo-700`}
                           onClick={handleDropdownToggle}
                         >
                           Welcome {Login.name}
                         </span>
                         {isDropdownOpen && (
-                          <div className="absolute mt-2 right-0 w-40 bg-blue-500 border border-gray-300 rounded-md shadow-lg">
+                          <div className="absolute mt-2 right-0 w-40 bg-cyan-300 border border-gray-300 rounded-md shadow-lg">
                             <Link
-                              to="/user/userProfile"
+                              to="/userDashboard"
                               className="w-full py-2 px-4 block font-sans text-white hover:bg-gray-100 hover:rounded hover:text-stone-950  cursor-pointer text-left text-xl focus:outline-none"
                             >
-                              User Profile
+                              {Login.userType === "tutor" ? (
+                                <>Tutor</>
+                              ) : (
+                                <>User</>
+                              )}{" "}
+                              Profile
                             </Link>
                             <hr />
+                            {Login.userType === "student" && (
+                              <>
+                                <Link
+                                  to="/user/cart"
+                                  className="w-full py-2 px-4 block font-sans text-white hover:bg-gray-100 hover:rounded hover:text-stone-950  cursor-pointer text-left text-xl focus:outline-none"
+                                >
+                                  Cart
+                                </Link>
+                                <hr />
+                              </>
+                            )}
+                            {Login.userType === "tutor" && (
+                              <>
+                                <Link
+                                  to="/tutor/dashboard"
+                                  className="w-full py-2 px-4 block font-sans text-white hover:bg-gray-100 hover:rounded hover:text-stone-950  cursor-pointer text-left text-xl focus:outline-none"
+                                >
+                                  Tutor Page
+                                </Link>
+                                <hr />
+                              </>
+                            )}
                             <div
                               className="w-full py-2 px-4 block  font-sans text-white hover:bg-gray-100 hover:rounded hover:text-stone-950 cursor-pointer text-left text-xl focus:outline-none"
                               onClick={handleLogout}
