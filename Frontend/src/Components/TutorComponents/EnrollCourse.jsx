@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import instance from "../../API/axiosInstance";
 import { toastError, toastSuccess } from "../toast";
+import { useSelector } from "react-redux";
 
 function EnrollCourse() {
   const [courseName, setCourseName] = useState("");
@@ -12,6 +13,8 @@ function EnrollCourse() {
   const [fees, setFees] = useState();
   const [image, setImage] = useState(null);
   // const [video, setVideo] = useState(null);
+
+  const user = useSelector((state) => state.user);
 
   const handleImage = (e) => {
     const selectedFile = e.target.files[0];
@@ -31,8 +34,8 @@ function EnrollCourse() {
       duration,
       fees,
       image,
+      tutorid: user.id,
     };
-    console.log(image);
     instance({
       url: "/tutor/courseAdd",
       method: "post",

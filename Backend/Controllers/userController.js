@@ -175,6 +175,7 @@ const user = {
                 id: userFind._id,
                 name: userFind.name,
                 email,
+                image: userFind.image,
                 userType: userFind.userType,
                 phoneNumber: userFind.phoneNumber,
                 token: token,
@@ -254,9 +255,8 @@ const user = {
   },
 
   resetPassword: async (req, res) => {
+    const { phoneNumber, password } = req.body;
     try {
-      const { phoneNumber, password } = req.body;
-
       const HashedPassword = await bcrypt.hash(password, 10);
 
       await User.updateOne(
@@ -267,6 +267,27 @@ const user = {
       return res.json({ status: 200, message: "Password reset successfully" });
     } catch (error) {
       return res.json({ status: 500, message: "internal server error" });
+    }
+  },
+
+  editProfile: async (req, res) => {
+    const { name, id, email } = req.body;
+    try {
+      const image = req.file.filename;
+      await User.findByIdAndUpdate(id, { $set: { name, image, email } });
+      return res.json({ status: 200, message: "User Details Updated" });
+    } catch (error) {
+      return res.json({ status: 500, message: "Internal server error" });
+    }
+  },
+
+  editProfileOnly: async (req, res) => {
+    const { name, id, email } = req.body;
+    try {
+      await User.findByIdAndUpdate(id, { $set: { name, email } });
+      return res.json({ status: 200, message: "User Details Updated" });
+    } catch (error) {
+      return res.json({ status: 500, message: "Internal server error" });
     }
   },
 };

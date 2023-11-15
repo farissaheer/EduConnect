@@ -1,21 +1,32 @@
 import React, { useState } from "react";
 import EnrollCourse from "./EnrollCourse";
 import { Link } from "react-router-dom";
+
 import UserProfile from "../UserComponents/UserProfile";
+import CourseList from "./CourseList";
 
 export default function TutorDasboard() {
   const [show, setShow] = useState(false);
-  const [dashboard, setDashbord] = useState(false);
-  const [course, setCourse] = useState(true);
+  const [dashboard, setDashbord] = useState(true);
+  const [course, setCourse] = useState(false);
+  const [courseList, setCourseList] = useState(false);
 
   const handleDashboard = () => {
     setDashbord(true);
     setCourse(false);
+    setCourseList(false);
   };
 
   const handleCourse = () => {
     setDashbord(false);
     setCourse(true);
+    setCourseList(false);
+  };
+
+  const handleCourseList = () => {
+    setDashbord(false);
+    setCourse(false);
+    setCourseList(true);
   };
 
   return (
@@ -84,6 +95,30 @@ export default function TutorDasboard() {
                     <circle cx={12} cy={12} r={9} />
                   </svg>
                   <span className="ml-2">Add Course</span>
+                </div>
+              </li>
+              <li
+                onClick={handleCourseList}
+                className="pl-6 cursor-pointer text-white text-md leading-3 tracking-normal mb-4 py-2 hover:text-cyan-700 focus:text-indigo-700 focus:outline-none"
+              >
+                <div className="flex items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="icon icon-tabler icon-tabler-compass"
+                    width={20}
+                    height={20}
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z" />
+                    <polyline points="8 16 10 10 16 8 14 14 8 16" />
+                    <circle cx={12} cy={12} r={9} />
+                  </svg>
+                  <span className="ml-2">Course List</span>
                 </div>
               </li>
             </ul>
@@ -357,12 +392,14 @@ export default function TutorDasboard() {
             </nav>
             {/* Navigation ends */}
             {/* Remove class [ h-64 ] when adding a card block */}
-            <div className="container mx-auto py-10 md:w-4/5 w-11/12 px-6">
+            <div className="container mx-auto bg-white py-10 px-8">
               {/* Remove class [ border-dashed border-2 border-gray-300 ] to remove dotted border */}
               {/* Place your content here */}
               {dashboard && <UserProfile />}
 
               {course && <EnrollCourse />}
+
+              {courseList && <CourseList />}
             </div>
           </div>
         </div>

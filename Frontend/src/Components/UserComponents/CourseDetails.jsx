@@ -193,7 +193,7 @@ const CourseDetails = () => {
         <div className=" w-full sm:w-96 md:w-8/12  lg:w-6/12 flex lg:flex-row flex-col lg:gap-8 sm:gap-6 gap-4">
           <div className=" w-full flex justify-center items-center">
             <img
-              src={`/pictures/${course.image}`}
+              src={`/Assets/images/${course.image}`}
               alt="CourseImage"
               height={600}
               width={700}

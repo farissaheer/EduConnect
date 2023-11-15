@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
 import { toastSuccess, toastError } from "../toast";
 import instance from "../../API/axiosInstance";
@@ -64,8 +63,11 @@ export default function Signup() {
         userType,
       };
 
-      axios
-        .post("/user/userSignUP", data)
+      instance({
+        url: "/user/userSignUP",
+        method: "POST",
+        data,
+      })
         .then((response) => {
           if (response.data.status === 200) {
             toastSuccess(response.data.message);
@@ -95,8 +97,11 @@ export default function Signup() {
       toastError("Please enter 10 digits phone number.");
       return;
     }
-    axios
-      .post("/user/createAccountOTP", { phoneNumber })
+    instance({
+      url: "/user/createAccountOTP",
+      method: "POST",
+      data: { phoneNumber },
+    })
       .then((res) => {
         if (res.data.status === 200) {
           toastSuccess(res.data.message);
@@ -120,8 +125,11 @@ export default function Signup() {
       toastError("OTP must be 4 digit");
       return;
     }
-    axios
-      .post("/user/checkOTP", { OTP, phoneNumber })
+    instance({
+      url: "/user/checkOTP",
+      method: "POST",
+      data: { OTP, phoneNumber },
+    })
       .then((res) => {
         if (res.data.status === 200) {
           toastSuccess(res.data.message);

@@ -16,9 +16,9 @@
 
 import multer from "multer";
 
-const courseAdd = multer.diskStorage({
+const uploadImage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "../Frontend/public/pictures"); // Set the destination path
+    cb(null, "../Frontend/public/Assets/images"); // Set the destination path
   },
   filename: (req, file, cb) => {
     const originalFileName = file.originalname;
@@ -27,4 +27,4 @@ const courseAdd = multer.diskStorage({
   },
 });
 
-export const courseUpload = multer({ storage: courseAdd });
+export const imageUpload = multer({ storage: uploadImage });

@@ -32,31 +32,15 @@ const UserProfile = () => {
           <div className="mx-auto xl:mx-0 flex items-center justify-center">
             <div className="w-48 h-48 rounded-full bg-cover bg-center bg-no-repeat relative bottom-0 mt-8 -mb-10 shadow flex items-center justify-center">
               <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSirAGMK51c3DAmKfbKLUmxs9iibyXLJRkPPw&usqp=CAU"
-                alt=""
+                src={
+                  userDetails.image
+                    ? `/Assets/images/${userDetails.image}`
+                    : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSirAGMK51c3DAmKfbKLUmxs9iibyXLJRkPPw&usqp=CAU"
+                }
+                alt="profilepic"
                 className="absolute z-0 h-full w-full object-cover rounded-full shadow top-0 left-0 bottom-0 right-0"
               />
-              <div className="absolute bg-black opacity-10 top-0 right-0 bottom-0 left-0 rounded-full z-0" />
-              {/* <div className="cursor-pointer flex flex-col justify-center items-center z-10 text-gray-100">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="icon icon-tabler icon-tabler-edit"
-                  width={20}
-                  height={20}
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" />
-                  <path d="M9 7 h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" />
-                  <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" />
-                  <line x1={16} y1={5} x2={19} y2={8} />
-                </svg>
-                <p className="text-xs text-gray-100">Edit Picture</p>
-              </div> */}
+              {/* <div className="absolute bg-black opacity-10 top-0 right-0 bottom-0 left-0 rounded-full z-0" /> */}
             </div>
           </div>
         </div>

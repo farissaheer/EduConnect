@@ -9,7 +9,7 @@ import {
   CookiesDataSave,
   checkUserLoginned,
 } from "../../Auth/CookiesManagement";
-import axios from "axios";
+import instance from "../../API/axiosInstance";
 
 export default function AdminLogin() {
   const [email, setEmail] = useState("");
@@ -41,7 +41,11 @@ export default function AdminLogin() {
       return;
     }
 
-    axios.post("/admin/adminLogin", { email, password }).then((res) => {
+    instance({
+      url: "/admin/adminLogin",
+      method: "POST",
+      data: { email, password },
+    }).then((res) => {
       if (res.data.status === 200) {
         const userId = res.data.adminDetails.id;
         const token = res.data.adminDetails.token;

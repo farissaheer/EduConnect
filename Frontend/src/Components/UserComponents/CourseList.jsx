@@ -31,21 +31,21 @@ export default function CourseList() {
   return (
     <>
       <div className="bg-gray-100 ">
-        <div className="mx-auto container p-8">
-          <div className="flex flex-wrap items-center justify-center">
+        <div className="mx-auto container">
+          <div className="grid xl:grid-cols-4 md:grid-cols-2">
             {/* Card */}
             {courses
               .reverse()
               .slice(0, 4)
               .map((course) => (
-                <>
+                <div className="flex items-center justify-center">
                   <div
                     onClick={() => handleCourse(course._id)}
-                    className="mx-16 w-72 lg:mb-0 mb-8 cursor-pointer"
+                    className="xl:mx-8 xl:my-8 mx-4 w-72 my-8 cursor-pointer"
                   >
                     <div>
                       <img
-                        src={`/pictures/${course.image}`}
+                        src={`/Assets/images/${course.image}`}
                         alt="courseimage"
                         className="w-full h-44"
                       />
@@ -84,7 +84,7 @@ export default function CourseList() {
                       </div>
                     </div>
                   </div>
-                </>
+                </div>
               ))}
             {/* Card Ends */}
           </div>

@@ -1,6 +1,9 @@
 import express from "express";
+
 import user from "../Controllers/userController.js";
 import course from "../Controllers/courseController.js";
+import { imageUpload } from "../Utils/multerConfig.js";
+import payment from "../Controllers/paymentController.js";
 
 const userRoute = express.Router();
 
@@ -18,5 +21,9 @@ userRoute.get("/courseList", course.courseList);
 userRoute.post("/courseDetail", course.courseDetail);
 userRoute.post("/addtocart", course.addtocart);
 userRoute.post("/loadCart", course.load);
+userRoute.post("/editProfile", imageUpload.single("image"), user.editProfile);
+userRoute.post("/editProfileOnly", user.editProfileOnly);
+userRoute.post("/userPaymentOrders", payment.order);
+userRoute.post("/UserPaymentVerify", payment.verify);
 
 export default userRoute;

@@ -3,12 +3,19 @@ import Course from "../Models/courseModel.js";
 
 const course = {
   createCourse: async (req, res) => {
-    const { courseName, description, lessons, contents, fees, duration } =
-      req.body;
+    const {
+      courseName,
+      description,
+      tutorid,
+      lessons,
+      contents,
+      fees,
+      duration,
+    } = req.body;
     try {
-      console.log("hello");
       const image = req.file.filename;
       const newCourse = new Course({
+        tutorid,
         courseName,
         description,
         lessons,
@@ -63,10 +70,26 @@ const course = {
     }
   },
 
+  courseListTutor: async (req, res) => {
+    const { tutorid } = req.body;
+    try {
+      const courses = await Course.find({ tutorid });
+      res.status(200).json({
+        status: 200,
+        courses,
+        message: "Course List",
+      });
+    } catch (error) {
+      res.status(404).json({
+        status: 404,
+        message: error.message,
+      });
+    }
+  },
+
   addtocart: async (req, res) => {
     const { courseid, userid } = req.body;
     try {
-      console.log("addtocart");
       const cart = await Cart.findOne({ userid });
       if (cart) {
         const proExist = cart.courses.findIndex(
@@ -78,11 +101,9 @@ const course = {
             message: "Course Already in cart",
           });
         } else {
-          const course = await Course.findById(courseid);
-          console.log(course);
           await Cart.findOneAndUpdate(
             { userid },
-            { $push: { courses: { courseid } }, $inc: { total: course.fees } },
+            { $push: { courses: { courseid } } },
             { new: true }
           );
           res.status(200).json({
@@ -91,11 +112,9 @@ const course = {
           });
         }
       } else {
-        const course = await Course.findById(courseid);
         const cart = new Cart({
           userid,
           courses: [{ courseid }],
-          total: course.fees,
         });
         await cart.save();
         res.status(200).json({
@@ -117,7 +136,6 @@ const course = {
       const cartData = await Cart.findOne({ userid }).populate(
         "courses.courseid"
       );
-      console.log(cartData);
       res.status(200).json({
         status: 200,
         cartData,

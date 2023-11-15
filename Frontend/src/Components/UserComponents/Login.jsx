@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 
 import { loginUser } from "../../Redux/UserSlice/userSlice";
 import { toastError, toastSuccess } from "../toast";
@@ -10,6 +9,7 @@ import {
   CookiesDataSave,
   checkUserLoginned,
 } from "../../Auth/CookiesManagement";
+import instance from "../../API/axiosInstance";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -20,7 +20,6 @@ function Login() {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    console.log("clicked");
     if (!email || !password) {
       toastError("Fill in all fields");
       return;
@@ -34,20 +33,20 @@ function Login() {
       return;
     }
     if (!checkUserLoginned()) {
-      console.log("hi");
       toastError(
         "Please log out of any other logged-in accounts before logging in again."
       );
       return;
     }
-    console.log("login");
-    axios.post("/user/userLogin", { email, password }).then((response) => {
+    instance({
+      url: "/user/userLogin",
+      method: "POST",
+      data: { email, password },
+    }).then((response) => {
       if (response.data.status === 200) {
         const userId = response.data.userdetails.id;
         const token = response.data.userdetails.token;
         const role = response.data.userdetails.userType;
-        console.log("hello")
-        console.log(role)
 
         CookiesDataSave(role, userId, token);
         toastSuccess(response.data.message);
