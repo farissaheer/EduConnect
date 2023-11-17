@@ -20,7 +20,7 @@ const userCourseList = new mongoose.Schema(
         },
         tutorid: {
           type: mongoose.Schema.Types.ObjectId,
-          ref: "userDetails",
+          ref: "UserDetails",
           required: true,
         },
         userid: {

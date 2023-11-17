@@ -4,29 +4,55 @@ import { Link } from "react-router-dom";
 
 import UserProfile from "../UserComponents/UserProfile";
 import CourseList from "./CourseList";
+import StudentList from "./StudentList";
+import ModuleAdd from "./ModuleAdd";
 
 export default function TutorDasboard() {
   const [show, setShow] = useState(false);
   const [dashboard, setDashbord] = useState(true);
   const [course, setCourse] = useState(false);
   const [courseList, setCourseList] = useState(false);
+  const [studentList, setStudentList] = useState(false);
+  const [module, setModule] = useState(false);
 
   const handleDashboard = () => {
     setDashbord(true);
     setCourse(false);
     setCourseList(false);
+    setStudentList(false);
+    setModule(false);
   };
 
   const handleCourse = () => {
     setDashbord(false);
     setCourse(true);
     setCourseList(false);
+    setStudentList(false);
+    setModule(false);
   };
 
   const handleCourseList = () => {
     setDashbord(false);
     setCourse(false);
     setCourseList(true);
+    setStudentList(false);
+    setModule(false);
+  };
+
+  const handleStudentList = () => {
+    setDashbord(false);
+    setCourse(false);
+    setCourseList(false);
+    setStudentList(true);
+    setModule(false);
+  };
+
+  const handleModule = () => {
+    setDashbord(false);
+    setCourse(false);
+    setCourseList(false);
+    setStudentList(false);
+    setModule(true);
   };
 
   return (
@@ -97,6 +123,7 @@ export default function TutorDasboard() {
                   <span className="ml-2">Add Course</span>
                 </div>
               </li>
+
               <li
                 onClick={handleCourseList}
                 className="pl-6 cursor-pointer text-white text-md leading-3 tracking-normal mb-4 py-2 hover:text-cyan-700 focus:text-indigo-700 focus:outline-none"
@@ -119,6 +146,56 @@ export default function TutorDasboard() {
                     <circle cx={12} cy={12} r={9} />
                   </svg>
                   <span className="ml-2">Course List</span>
+                </div>
+              </li>
+
+              <li
+                onClick={handleModule}
+                className="pl-6 cursor-pointer text-white text-md leading-3 tracking-normal mb-4 py-2 hover:text-cyan-700 focus:text-indigo-700 focus:outline-none"
+              >
+                <div className="flex items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="icon icon-tabler icon-tabler-compass"
+                    width={20}
+                    height={20}
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z" />
+                    <polyline points="8 16 10 10 16 8 14 14 8 16" />
+                    <circle cx={12} cy={12} r={9} />
+                  </svg>
+                  <span className="ml-2">Add Module</span>
+                </div>
+              </li>
+
+              <li
+                onClick={handleStudentList}
+                className="pl-6 cursor-pointer text-white text-md leading-3 tracking-normal mb-4 py-2 hover:text-cyan-700 focus:text-indigo-700 focus:outline-none"
+              >
+                <div className="flex items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="icon icon-tabler icon-tabler-compass"
+                    width={20}
+                    height={20}
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z" />
+                    <polyline points="8 16 10 10 16 8 14 14 8 16" />
+                    <circle cx={12} cy={12} r={9} />
+                  </svg>
+                  <span className="ml-2">Student List</span>
                 </div>
               </li>
             </ul>
@@ -400,6 +477,10 @@ export default function TutorDasboard() {
               {course && <EnrollCourse />}
 
               {courseList && <CourseList />}
+
+              {studentList && <StudentList />}
+
+              {module && <ModuleAdd />}
             </div>
           </div>
         </div>

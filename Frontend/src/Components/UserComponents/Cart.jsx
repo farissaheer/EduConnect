@@ -33,6 +33,28 @@ function Cart() {
       }
     });
   }, [userDetails.id]);
+
+  const handleRemove = (courseid) => {
+    instance({
+      url: "/user/removeCartItem",
+      method: "POST",
+      data: { courseid, userid: userDetails.id },
+    }).then((res) => {
+      if (res.data.status === 200) {
+        const courses = res.data.cartData.courses;
+        setCourses(courses);
+        const total = courses.reduce(
+          (acc, course) => acc + course.courseid.fees,
+          0
+        );
+        setTotal(total);
+        return;
+      } else {
+        toastError(res.data.message);
+        return;
+      }
+    });
+  };
   return (
     <div
       className="flex lg:flex-row flex-col justify-center items-center"
@@ -45,47 +67,52 @@ function Cart() {
         <p className="mb-12 text-5xl font-black leading-10 text-gray-800 pt-3">
           Cart
         </p>
-        {courses.map((course) => (
-          <div className="md:flex items-center py-4 border-y border-gray-200">
-            <div className="w-1/4">
-              <img
-                src={`/Assets/images/${course.courseid.image}`}
-                alt="courseimage"
-                className="w-full h-full object-center object-cover"
-              />
-            </div>
-            <div className="md:pl-3 md:w-3/4">
-              <p className="text-xs leading-3 text-gray-800 md:pt-0 pt-4"></p>
-              <div className="flex items-center justify-between w-full pt-1">
-                <p className="text-base font-black leading-none text-gray-800">
-                  {course.courseid.courseName}
-                </p>
+        {courses.length === 0 && <p>Cart is empty</p>}
+        {courses.length > 0 &&
+          courses.map((course) => (
+            <div className="md:flex items-center py-4 border-y border-gray-200">
+              <div className="w-1/4">
+                <img
+                  src={`/Assets/images/${course.courseid.image}`}
+                  alt="courseimage"
+                  className="w-full h-full object-center object-cover"
+                />
               </div>
-              <p className="text-xs leading-3 text-gray-600 pt-2">
-                Lessons: {course.courseid.lessons} Nos
-              </p>
-              <p className="text-xs leading-3 text-gray-600 py-4">
-                Contents: {course.courseid.contents}
-              </p>
-              <p className="w-96 text-xs leading-3 text-gray-600">
-                {/* Composition: 100% calf leather */}
-              </p>
-              <div className="flex items-center justify-between pt-5 pr-6">
-                <div className="flex items-center">
-                  {/* <p className="text-xs leading-3 underline text-gray-800 cursor-pointer">
-                            Add to favorites
-                          </p>
-                          <p className="text-xs leading-3 underline text-red-500 pl-5 cursor-pointer">
-                            Remove
-                          </p> */}
+              <div className="md:pl-3 md:w-3/4">
+                <p className="text-xs leading-3 text-gray-800 md:pt-0 pt-4"></p>
+                <div className="flex items-center justify-between w-full pt-1">
+                  <p className="text-base font-black leading-none text-gray-800">
+                    {course.courseid.courseName}
+                  </p>
                 </div>
-                <p className="text-base font-black leading-none text-gray-800">
-                  ₹{course.courseid.fees}
+                <p className="text-xs leading-3 text-gray-600 pt-2">
+                  Lessons: {course.courseid.lessons} Nos
                 </p>
+                <p className="text-xs leading-3 text-gray-600 py-4">
+                  Contents: {course.courseid.contents}
+                </p>
+                <p className="w-96 text-xs leading-3 text-gray-600">
+                  {/* Composition: 100% calf leather */}
+                </p>
+                <div className="flex items-center justify-between pt-2 pr-6">
+                  <div className="flex items-center">
+                    {/* <p className="text-xs leading-3 underline text-gray-800 cursor-pointer">
+                      Add to favorites
+                    </p> */}
+                    <p
+                      onClick={() => handleRemove(course.courseid._id)}
+                      className="text-sm leading-3 underline text-red-500 cursor-pointer"
+                    >
+                      Remove
+                    </p>
+                  </div>
+                  <p className="text-base font-black leading-none text-gray-800">
+                    ₹{course.courseid.fees}
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
       <div className="xl:w-1/2 lg:w-1/3 xl:w-1/4 w-full bg-gray-100 lg:-mt-20">
         <div className="flex flex-col px-14 py-20 justify-between">
@@ -110,7 +137,7 @@ function Cart() {
               </p>
             </div>
             <button
-              onClick={() => navigate("/test")}
+              onClick={() => navigate("/user/checkout")}
               className="text-base leading-none w-full py-5 bg-gray-800 border-gray-800 border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white"
             >
               Checkout

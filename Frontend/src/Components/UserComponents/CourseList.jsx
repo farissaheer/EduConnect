@@ -47,10 +47,10 @@ export default function CourseList() {
                       <img
                         src={`/Assets/images/${course.image}`}
                         alt="courseimage"
-                        className="w-full h-44"
+                        className="rounded-t-xl w-full h-44"
                       />
                     </div>
-                    <div className="bg-white">
+                    <div className="bg-white rounded-b-xl">
                       <div className="p-4">
                         <div className="flex items-center">
                           <h2 className="text-lg font-semibold">

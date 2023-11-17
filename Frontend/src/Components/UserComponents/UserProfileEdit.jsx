@@ -62,7 +62,7 @@ function UserProfileEdit() {
         <div className="xl:w-full border-b border-gray-300 dark:border-gray-700 py-5 bg-white dark:bg-gray-800">
           <div className="flex w-11/12 mx-auto xl:w-full xl:mx-0 items-center">
             <p className="text-lg text-gray-800 dark:text-gray-100 font-bold">
-              Profile
+              Edit Profile
             </p>
             <div className="ml-2 cursor-pointer text-gray-600 dark:text-gray-400">
               <svg

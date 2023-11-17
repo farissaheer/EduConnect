@@ -3,25 +3,35 @@ import { Link } from "react-router-dom";
 
 import UserProfile from "./UserProfile";
 import UserProfileEdit from "./UserProfileEdit";
+import MyCourses from "./MyCourses";
 
 export default function UserDashboard() {
   const [show, setShow] = useState(false);
   const [showProfile, setShowProfile] = useState(true);
   const [showEdit, setShowEdit] = useState(false);
+  const [showCourse, setShowCourse] = useState(false);
 
   const handleProfile = () => {
     setShowProfile(true);
     setShowEdit(false);
+    setShowCourse(false);
   };
 
   const handleEdit = () => {
     setShowProfile(false);
     setShowEdit(true);
+    setShowCourse(false);
+  };
+
+  const handleCourse = () => {
+    setShowProfile(false);
+    setShowEdit(false);
+    setShowCourse(true);
   };
 
   return (
     <>
-      <div className="w-full h-full bg-gray-200">
+      <div className="w-full h-full">
         <div className="flex flex-no-wrap">
           {/* Sidebar starts */}
           <div className="absolute lg:fixed w-64 h-screen shadow bg-emerald-300 hidden lg:block">
@@ -84,6 +94,30 @@ export default function UserDashboard() {
                     <path d="M4 7h3a1 1 0 0 0 1 -1v-1a2 2 0 0 1 4 0v1a1 1 0 0 0 1 1h3a1 1 0 0 1 1 1v3a1 1 0 0 0 1 1h1a2 2 0 0 1 0 4h-1a1 1 0 0 0 -1 1v3a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-1a2 2 0 0 0 -4 0v1a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1h1a2 2 0 0 0 0 -4h-1a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1" />
                   </svg>
                   <span className="ml-2">Edit Profile</span>
+                </div>
+              </li>
+
+              <li
+                onClick={handleCourse}
+                className="pl-6 cursor-pointer text-white text-md leading-3 tracking-normal mb-4 py-2 hover:text-cyan-700 focus:text-indigo-700 focus:outline-none"
+              >
+                <div className="flex items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="icon icon-tabler icon-tabler-puzzle"
+                    width={20}
+                    height={20}
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z" />
+                    <path d="M4 7h3a1 1 0 0 0 1 -1v-1a2 2 0 0 1 4 0v1a1 1 0 0 0 1 1h3a1 1 0 0 1 1 1v3a1 1 0 0 0 1 1h1a2 2 0 0 1 0 4h-1a1 1 0 0 0 -1 1v3a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-1a2 2 0 0 0 -4 0v1a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1h1a2 2 0 0 0 0 -4h-1a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1" />
+                  </svg>
+                  <span className="ml-2">My Courses</span>
                 </div>
               </li>
             </ul>
@@ -362,6 +396,7 @@ export default function UserDashboard() {
               {/* Place your content here */}
               {showProfile && <UserProfile />}
               {showEdit && <UserProfileEdit />}
+              {showCourse && <MyCourses/>}
             </div>
           </div>
         </div>
