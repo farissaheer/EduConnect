@@ -1,8 +1,12 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
-import { userSliceReducer } from "./UserSlice/userSlice";
 import storage from "redux-persist/lib/storage";
-import { adminSLiceReducer } from "./AdminSlice/adminSlice";
+
+import { userSliceReducer } from "./UserSlice/userSlice";
+import { courseSliceReducer } from "./UserSlice/courseSlice";
+import { cartSliceReducer } from "./UserSlice/cartSlice";
+import { tutorSliceReducer } from "./UserSlice/tutorSlice";
+import { adminSliceReducer } from "./AdminSlice/adminSlice";
 
 const persistConfig = {
   key: "root",
@@ -12,7 +16,10 @@ const persistConfig = {
 
 const reducerOG = combineReducers({
   user: userSliceReducer,
-  admin: adminSLiceReducer,
+  admin: adminSliceReducer,
+  courses: courseSliceReducer,
+  cartItems: cartSliceReducer,
+  tutors: tutorSliceReducer,
 });
 
 const reducer = persistReducer(persistConfig, reducerOG);

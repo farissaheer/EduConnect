@@ -109,7 +109,7 @@ const course = {
 
   courseList: async (req, res) => {
     try {
-      const courses = await Course.find({});
+      const courses = await Course.find({ status: true });
       res.status(200).json({ status: 200, courses, message: "Course List" });
     } catch (error) {
       res.status(404).json({ status: 404, message: error.message });

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import instance from "../../API/axiosInstance";
 import { toastError, toastSuccess } from "../toast";
+import { loginUser } from "../../Redux/UserSlice/userSlice";
 
 function UserProfileEdit() {
   const [image, setImage] = useState();
@@ -11,6 +12,7 @@ function UserProfileEdit() {
   const [preview, setPreview] = useState(false);
 
   const userDetails = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setImage(userDetails.image);
@@ -24,7 +26,7 @@ function UserProfileEdit() {
   };
 
   const handleEdit = () => {
-    let data = { id: userDetails.id, name, email };
+    let data = { id: userDetails.id, token: userDetails.token, name, email };
     const method = "POST";
     let url, obj;
     if (preview) {
@@ -46,6 +48,8 @@ function UserProfileEdit() {
       .then((res) => {
         if (res.data.status === 200) {
           toastSuccess(res.data.message);
+          dispatch(loginUser(res.data.userdetails));
+          setPreview(false);
           return;
         } else {
           toastError(res.data.message);
@@ -104,19 +108,26 @@ function UserProfileEdit() {
                   className="absolute z-0 h-full w-full object-cover rounded-full shadow top-0 left-0 bottom-0 right-0"
                 />
               )}
-              {/* <img
-                src={
-                  image
-                    ? `${URL.createObjectURL(image)}`
-                    : `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSirAGMK51c3DAmKfbKLUmxs9iibyXLJRkPPw&usqp=CAU`
-                }
-                alt="profile Pic"
-                className="absolute z-0 h-full w-full object-cover rounded-full shadow top-0 left-0 bottom-0 right-0"
-              /> */}
             </div>
           </div>
+          <div className="flex text-sm text-gray-600">
+            <p className="pl-1 text-white">or drag and drop</p>
+          </div>
           <div className="mx-auto xl:mx-0 flex items-center mb-4 justify-center">
-            <input type="file" onChange={handleChange} />
+            <label
+              htmlFor="file-upload"
+              className="relative cursor-pointer bg-cyan-300 rounded-md font-small text-black hover:text-indigo-900"
+            >
+              <span className="px-4">Upload Image</span>
+              <input
+                className="sr-only"
+                type="file"
+                id="file-upload"
+                name="file-upload"
+                accept="image/*"
+                onChange={handleChange}
+              />
+            </label>
           </div>
         </div>
       </div>

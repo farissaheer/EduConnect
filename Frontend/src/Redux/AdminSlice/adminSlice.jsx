@@ -56,4 +56,4 @@ export const adminSlice = createSlice({
 export const { LoginAdmin, LogoutAdmin, userList, tutorList, tutorRequest } =
   adminSlice.actions;
 
-export const adminSLiceReducer = adminSlice.reducer;
+export const adminSliceReducer = adminSlice.reducer;

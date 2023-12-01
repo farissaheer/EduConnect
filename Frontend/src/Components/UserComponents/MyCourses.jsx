@@ -41,10 +41,9 @@ export default function MyCourses() {
           </p>
           <div className="grid xl:grid-cols-3 md:grid-cols-2">
             {/* Card */}
-            {courses
-              .reverse()
-              .slice(0, 4)
-              .map((course) => (
+            {courses.length === 0 && <p>No courses</p>}
+            {courses.length > 0 &&
+              courses.reverse().map((course) => (
                 <div className="flex items-center justify-center">
                   <div
                     onClick={() => handleCourse(course._id)}

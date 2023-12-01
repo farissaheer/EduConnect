@@ -167,7 +167,7 @@ const user = {
           );
 
           if (PasswordMatch) {
-            const token = generateToken(userFind.email);
+            const token = generateToken(userFind.email, userFind._id);
             res.json({
               status: 200,
               message: "User logged in.",
@@ -271,21 +271,51 @@ const user = {
   },
 
   editProfile: async (req, res) => {
-    const { name, id, email } = req.body;
+    const { name, id, email, token } = req.body;
     try {
       const image = req.file.filename;
       await User.findByIdAndUpdate(id, { $set: { name, image, email } });
-      return res.json({ status: 200, message: "User Details Updated" });
+      const userFind = await User.findById(id);
+      const userdetails = {
+        id: userFind._id,
+        name: userFind.name,
+        email: userFind.email,
+        image: userFind.image,
+        userType: userFind.userType,
+        phoneNumber: userFind.phoneNumber,
+        token,
+      };
+      console.log(userdetails);
+      return res.json({
+        status: 200,
+        userdetails,
+        message: "User Details Updated",
+      });
     } catch (error) {
       return res.json({ status: 500, message: "Internal server error" });
     }
   },
 
   editProfileOnly: async (req, res) => {
-    const { name, id, email } = req.body;
+    const { name, id, email, token } = req.body;
     try {
       await User.findByIdAndUpdate(id, { $set: { name, email } });
-      return res.json({ status: 200, message: "User Details Updated" });
+      const userFind = await User.findById(id);
+      const userdetails = {
+        id: userFind._id,
+        name: userFind.name,
+        email: userFind.email,
+        image: userFind.image,
+        userType: userFind.userType,
+        phoneNumber: userFind.phoneNumber,
+        token,
+      };
+      console.log(userdetails);
+      return res.json({
+        status: 200,
+        userdetails,
+        message: "User Details Updated",
+      });
     } catch (error) {
       return res.json({ status: 500, message: "Internal server error" });
     }

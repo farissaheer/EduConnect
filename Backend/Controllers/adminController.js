@@ -15,7 +15,7 @@ const adminController = {
       const passwordMatch = await bcrypt.compare(password, adminFind.password);
       if (passwordMatch) {
         if (adminFind.isAdmin) {
-          const token = generateToken(adminFind.email);
+          const token = generateToken(adminFind.email, adminFind._id);
           return res.status(200).json({
             status: 200,
             message: "Admin Loginned",

@@ -14,10 +14,14 @@ userRoute.use(express.urlencoded({ extended: false }));
 userRoute.post("/createAccountOTP", user.createAccountOTP);
 userRoute.post("/checkOTP", user.checkOTP);
 userRoute.post("/userSignUP", user.userSignup);
+
 userRoute.post("/userLogin", user.userLogin);
+
 userRoute.post("/resetPasswordOTP", user.resetPasswordOTP);
 userRoute.post("/resetPassword", user.resetPassword);
+
 userRoute.post("/addMoreDetails", user.addDetails);
+
 userRoute.get("/courseList", course.courseList);
 userRoute.post("/courseDetail", course.courseDetail);
 

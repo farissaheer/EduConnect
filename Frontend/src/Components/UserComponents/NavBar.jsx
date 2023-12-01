@@ -37,9 +37,6 @@ export default function NavBar() {
                     alt="logo"
                   />
                 </Link>
-                {/* <h3 className="text-base text-white font-bold tracking-normal leading-tight ml-3 hidden lg:block">
-                  EduConnect
-                </h3> */}
               </div>
               <ul className="pr-12 xl:flex items-center h-full hidden">
                 {/* <li className="cursor-pointer h-full flex items-center hover:text-indigo-700 text-sm text-white tracking-normal border-b-2 border-white"> */}
@@ -271,14 +268,6 @@ export default function NavBar() {
                     <span className="ml-2 font-bold">Products</span>
                   </div>
                 </li>
-                <li className="flex md:hidden flex-col cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none flex justify-center">
-                  <div className="flex items-center">
-                    <span className="ml-2 font-bold">Performance</span>
-                  </div>
-                </li>
-                <li className="border-b border-gray-300 flex md:hidden cursor-pointer text-gray-600 text-sm leading-3 tracking-normal pt-2 pb-4 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none">
-                  <span className="ml-2 font-bold">Deliverables</span>
-                </li>
                 <li className="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none">
                   <div className="flex items-center">
                     <div className="w-12 cursor-pointer flex text-sm border-2 border-transparent rounded focus:outline-none focus:border-white transition duration-150 ease-in-out">
@@ -354,9 +343,16 @@ export default function NavBar() {
         </nav>
         {/* Navbar */}
         <nav>
-          <div className="py-4 px-6 w-full flex xl:hidden justify-between items-center bg-gray-800 fixed top-0 z-40">
-            <div className="w-24">
-              <svg
+          <div
+            className={
+              show
+                ? "py-4 px-6 w-full flex xl:hidden justify-between items-center bg-blue-400 absolute top-0 z-40"
+                : "py-4 px-6 w-full flex xl:hidden justify-between items-center bg-blue-400 relative top-0 z-40"
+            }
+            // className="py-4 px-6 w-full flex xl:hidden justify-between items-center bg-blue-400 relative top-0 z-40"
+          >
+            <div className="w-28">
+              {/* <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width={43}
                 height={44}
@@ -369,7 +365,16 @@ export default function NavBar() {
                   d="M37.8735 0C36.1688 0 34.7818 1.37956 34.7818 3.0751C34.7818 4.77063 36.1688 6.15019 37.8735 6.15019C39.5782 6.15019 40.9653 4.77063 40.9653 3.0751C40.9653 1.37956 39.5782 0 37.8735 0ZM37.8735 4.61264C37.021 4.61264 36.3277 3.92305 36.3277 3.0751C36.3277 2.22714 37.021 1.53755 37.8735 1.53755C38.7261 1.53755 39.4194 2.22714 39.4194 3.0751C39.4194 3.92305 38.7261 4.61264 37.8735 4.61264ZM26.6663 1.0513C26.1828 1.0513 25.7909 1.44107 25.7909 1.92193C25.7909 2.4028 26.1828 2.79238 26.6663 2.79238C27.1497 2.79238 27.5416 2.40261 27.5416 1.92193C27.5416 1.44107 27.1497 1.0513 26.6663 1.0513ZM43 13.4535C43 13.9342 42.6081 14.324 42.1247 14.324C41.6412 14.324 41.2493 13.9342 41.2493 13.4535C41.2493 12.9727 41.6412 12.5829 42.1247 12.5829C42.6081 12.5829 43 12.9729 43 13.4535ZM18.1654 2.59019L35.1698 12.4044C35.4079 12.5418 35.5548 12.7951 35.5548 13.0692V33.0573C35.5548 33.3273 35.4123 33.5772 35.1803 33.7161L18.1758 43.8901C18.0533 43.9633 17.915 44 17.7774 44C17.6398 44 17.5016 43.9633 17.3789 43.8901L0.374484 33.7161C0.142219 33.5772 0 33.3271 0 33.0573V13.0692C0 12.7951 0.146857 12.5418 0.384919 12.4044L17.3894 2.59019C17.6296 2.45124 17.9254 2.45124 18.1654 2.59019ZM17.7774 4.14388L33.2524 13.0751L23.0207 19.0887L18.5503 16.4735V12.3004C18.5503 11.8758 18.2042 11.5316 17.7774 11.5316C17.3505 11.5316 17.0044 11.8758 17.0044 12.3004V16.4735L11.9752 19.4158C11.7389 19.554 11.5939 19.8057 11.5939 20.0783V25.8047L1.54586 31.7102V13.5118L17.7774 4.14388ZM2.28227 33.0632L17.7774 42.3341L34.0091 32.6225V14.4162L23.961 20.322V26.4081C23.961 26.6807 23.8161 26.9325 23.5798 27.0706L18.5505 30.0125V33.826C18.5505 34.2506 18.2044 34.5948 17.7776 34.5948C17.3507 34.5948 17.0046 34.2506 17.0046 33.826V30.0125L12.2274 27.2182L2.28227 33.0632Z"
                   fill="#667EEA"
                 />
-              </svg>
+              </svg> */}
+              <div className="">
+                <Link to={"/"}>
+                  <img
+                    className="rounded h-11 w-28 object-cover"
+                    src="/Assets/EduConnectLogo.png"
+                    alt="logo"
+                  />
+                </Link>
+              </div>
             </div>
             <div>
               <div
@@ -405,23 +410,23 @@ export default function NavBar() {
           <div
             className={
               show
-                ? "absolute xl:hidden w-full h-full transform -translate-x-0 z-40"
-                : "absolute xl:hidden w-full h-full transform -translate-x-full z-40"
+                ? "fixed xl:hidden w-full h-full transform -translate-x-0 z-40"
+                : "fixed xl:hidden w-full h-full transform -translate-x-full z-40"
             }
             id="mobile-nav"
           >
             <div
-              className="bg-gray-800 opacity-50 w-full h-full"
+              className="bg-blue-400 opacity-40 w-full h-full"
               onClick={() => setShow(!show)}
             />
-            <div className="w-64 z-40 fixed overflow-y-auto z-40 top-0 bg-gray-800 shadow h-full flex-col justify-between xl:hidden pb-4 transition duration-150 ease-in-out">
+            <div className="w-64 z-40 fixed overflow-y-auto z-40 top-0 bg-blue-400 shadow h-full flex-col justify-between xl:hidden pb-4 transition duration-150 ease-in-out">
               <div className="px-6 h-full">
                 <div className="flex flex-col justify-between h-full w-full">
                   <div>
                     <div className="mt-6 flex w-full items-center justify-between">
                       <div className="flex items-center justify-between w-full">
                         <div className="flex items-center">
-                          <svg
+                          {/* <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width={43}
                             height={44}
@@ -434,10 +439,19 @@ export default function NavBar() {
                               d="M37.8735 0C36.1688 0 34.7818 1.37956 34.7818 3.0751C34.7818 4.77063 36.1688 6.15019 37.8735 6.15019C39.5782 6.15019 40.9653 4.77063 40.9653 3.0751C40.9653 1.37956 39.5782 0 37.8735 0ZM37.8735 4.61264C37.021 4.61264 36.3277 3.92305 36.3277 3.0751C36.3277 2.22714 37.021 1.53755 37.8735 1.53755C38.7261 1.53755 39.4194 2.22714 39.4194 3.0751C39.4194 3.92305 38.7261 4.61264 37.8735 4.61264ZM26.6663 1.0513C26.1828 1.0513 25.7909 1.44107 25.7909 1.92193C25.7909 2.4028 26.1828 2.79238 26.6663 2.79238C27.1497 2.79238 27.5416 2.40261 27.5416 1.92193C27.5416 1.44107 27.1497 1.0513 26.6663 1.0513ZM43 13.4535C43 13.9342 42.6081 14.324 42.1247 14.324C41.6412 14.324 41.2493 13.9342 41.2493 13.4535C41.2493 12.9727 41.6412 12.5829 42.1247 12.5829C42.6081 12.5829 43 12.9729 43 13.4535ZM18.1654 2.59019L35.1698 12.4044C35.4079 12.5418 35.5548 12.7951 35.5548 13.0692V33.0573C35.5548 33.3273 35.4123 33.5772 35.1803 33.7161L18.1758 43.8901C18.0533 43.9633 17.915 44 17.7774 44C17.6398 44 17.5016 43.9633 17.3789 43.8901L0.374484 33.7161C0.142219 33.5772 0 33.3271 0 33.0573V13.0692C0 12.7951 0.146857 12.5418 0.384919 12.4044L17.3894 2.59019C17.6296 2.45124 17.9254 2.45124 18.1654 2.59019ZM17.7774 4.14388L33.2524 13.0751L23.0207 19.0887L18.5503 16.4735V12.3004C18.5503 11.8758 18.2042 11.5316 17.7774 11.5316C17.3505 11.5316 17.0044 11.8758 17.0044 12.3004V16.4735L11.9752 19.4158C11.7389 19.554 11.5939 19.8057 11.5939 20.0783V25.8047L1.54586 31.7102V13.5118L17.7774 4.14388ZM2.28227 33.0632L17.7774 42.3341L34.0091 32.6225V14.4162L23.961 20.322V26.4081C23.961 26.6807 23.8161 26.9325 23.5798 27.0706L18.5505 30.0125V33.826C18.5505 34.2506 18.2044 34.5948 17.7776 34.5948C17.3507 34.5948 17.0046 34.2506 17.0046 33.826V30.0125L12.2274 27.2182L2.28227 33.0632Z"
                               fill="#667EEA"
                             />
-                          </svg>
-                          <p className="text-base  text-white ml-3">
-                            The North
-                          </p>
+                          </svg> */}
+                          <div className="">
+                            <Link to={"/"}>
+                              <img
+                                className="rounded h-11 w-28 object-cover"
+                                src="/Assets/EduConnectLogo.png"
+                                alt="logo"
+                              />
+                            </Link>
+                          </div>
+                          {/* <p className="text-base  text-white ml-3">
+                            EduConnect
+                          </p> */}
                         </div>
                         <div
                           id="cross"
@@ -535,57 +549,6 @@ export default function NavBar() {
                           </div>
                         </li>
                       </a>
-                      <a href="/" className="cursor-pointer">
-                        <li className="text-white pt-8">
-                          <div className="flex items-center">
-                            <div className="w-6 h-6 md:w-8 md:h-8 text-white">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="icon icon-tabler icon-tabler-compass"
-                                viewBox="0 0 24 24"
-                                strokeWidth="1.5"
-                                stroke="currentColor"
-                                fill="none"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              >
-                                <path stroke="none" d="M0 0h24v24H0z" />
-                                <polyline points="8 16 10 10 16 8 14 14 8 16" />
-                                <circle cx={12} cy={12} r={9} />
-                              </svg>
-                            </div>
-                            <p className="text-white xl:text-base  text-base ml-3">
-                              Performance
-                            </p>
-                          </div>
-                        </li>
-                      </a>
-                      <li className="text-white pt-8 cursor-pointer">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center">
-                            <div className="w-6 h-6 md:w-8 md:h-8 text-white">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="icon icon-tabler icon-tabler-code"
-                                viewBox="0 0 24 24"
-                                strokeWidth="1.5"
-                                stroke="currentColor"
-                                fill="none"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              >
-                                <path stroke="none" d="M0 0h24v24H0z" />
-                                <polyline points="7 8 3 12 7 16" />
-                                <polyline points="17 8 21 12 17 16" />
-                                <line x1={14} y1={4} x2={10} y2={20} />
-                              </svg>
-                            </div>
-                            <p className="text-white xl:text-base  text-base ml-3">
-                              Deliverables
-                            </p>
-                          </div>
-                        </div>
-                      </li>
                     </ul>
                   </div>
                   <div className="w-full pt-4">
